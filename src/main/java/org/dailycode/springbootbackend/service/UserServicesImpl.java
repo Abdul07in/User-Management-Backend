@@ -30,11 +30,11 @@ public class UserServicesImpl implements UserService {
 
     @Override
     public List<User> fetchUserList() {
-        List<User> users = userRepository.findAll();
-
-        List<User> usersList = users.stream().map(user -> new User(user.getId(), user.getFirstName(), user.getLastName(), user.getEmail())).collect(Collectors.toList());
-        return usersList;
+        return userRepository.findAll().stream()
+                .map(user -> new User(user.getId(), user.getFirstName(), user.getLastName(), user.getEmail()))
+                .collect(Collectors.toList());
     }
+
 
     @Override
     public UserModel getUserById(Long id) {
